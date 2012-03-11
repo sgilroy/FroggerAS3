@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<images>
+
+	
+	<image>
+		<name>alligator.png</name>
+		<x>424</x>
+		<y>97</y>
+		<width>22</width>
+		<height>29</height>
+	</image>
+	
+	<image>
+		<name>bg.png</name>
+		<x>2</x>
+		<y>2</y>
+		<width>320</width>
+		<height>480</height>
+	</image>
+	
+	<image>
+		<name>car_1.png</name>
+		<x>558</x>
+		<y>46</y>
+		<width>23</width>
+		<height>25</height>
+	</image>
+	
+	<image>
+		<name>car_2.png</name>
+		<x>583</x>
+		<y>46</y>
+		<width>23</width>
+		<height>25</height>
+	</image>
+	
+	<image>
+		<name>car_3.png</name>
+		<x>324</x>
+		<y>185</y>
+		<width>21</width>
+		<height>22</height>
+	</image>
+	
+	<image>
+		<name>car_4.png</name>
+		<x>363</x>
+		<y>170</y>
+		<width>22</width>
+		<height>19</height>
+	</image>
+	
+	<image>
+		<name>car_5.png</name>
+		<x>446</x>
+		<y>133</y>
+		<width>39</width>
+		<height>18</height>
+	</image>
+	
+	<image>
+		<name>control.png</name>
+		<x>646</x>
+		<y>72</y>
+		<width>55</width>
+		<height>55</height>
+	</image>
+	
+	<image>
+		<name>croc_1.png</name>
+		<x>448</x>
+		<y>102</y>
+		<width>67</width>
+		<height>29</height>
+	</image>
+	
+	<image>
+		<name>croc_2.png</name>
+		<x>324</x>
+		<y>139</y>
+		<width>67</width>
+		<height>29</height>
+	</image>
+	
+	<image>
+		<name>death_1.png</name>
+		<x>539</x>
+		<y>85</y>
+		<width>17</width>
+		<height>22</height>
+	</image>
+	
+	<image>
+		<name>death_2.png</name>
+		<x>324</x>
+		<y>209</y>
+		<width>17</width>
+		<height>22</height>
+	</image>
+	
+	<image>
+		<name>death_3.png</name>
+		<x>487</x>
+		<y>133</y>
+		<width>17</width>
+		<height>22</height>
+	</image>
+	
+	<image>
+		<name>death_4.png</name>
+		<x>441</x>
+		<y>153</y>
+		<width>17</width>
+		<height>22</height>
+	</image>
+	
+	<image>
+		<name>fly.png</name>
+		<x>410</x>
+		<y>176</y>
+		<width>17</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>frog_bonus_side.png</name>
+		<x>382</x>
+		<y>193</y>
+		<width>16</width>
+		<height>21</height>
+	</image>
+	
+	<image>
+		<name>frog_bonus_stand.png</name>
+		<x>355</x>
+		<y>214</y>
+		<width>16</width>
+		<height>21</height>
+	</image>
+	
+	<image>
+		<name>frog_jump.png</name>
+		<x>608</x>
+		<y>46</y>
+		<width>22</width>
+		<height>22</height>
+	</image>
+	
+	<image>
+		<name>frog_side.png</name>
+		<x>422</x>
+		<y>128</y>
+		<width>22</width>
+		<height>22</height>
+	</image>
+	
+	<image>
+		<name>frog_side_jump.png</name>
+		<x>393</x>
+		<y>139</y>
+		<width>22</width>
+		<height>22</height>
+	</image>
+	
+	<image>
+		<name>frog_stand.png</name>
+		<x>417</x>
+		<y>152</y>
+		<width>22</width>
+		<height>22</height>
+	</image>
+	
+	<image>
+		<name>frog_target.png</name>
+		<x>426</x>
+		<y>66</y>
+		<width>23</width>
+		<height>29</height>
+	</image>
+	
+	<image>
+		<name>game_over_box.png</name>
+		<x>324</x>
+		<y>85</y>
+		<width>86</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>grass.png</name>
+		<x>324</x>
+		<y>2</y>
+		<width>320</width>
+		<height>42</height>
+	</image>
+	
+	<image>
+		<name>label_200.png</name>
+		<x>632</x>
+		<y>60</y>
+		<width>20</width>
+		<height>10</height>
+	</image>
+	
+	<image>
+		<name>label_400.png</name>
+		<x>517</x>
+		<y>102</y>
+		<width>20</width>
+		<height>10</height>
+	</image>
+	
+	<image>
+		<name>label_how_to.png</name>
+		<x>324</x>
+		<y>66</y>
+		<width>100</width>
+		<height>17</height>
+	</image>
+	
+	<image>
+		<name>label_instructions.png</name>
+		<x>455</x>
+		<y>46</y>
+		<width>101</width>
+		<height>37</height>
+	</image>
+	
+	<image>
+		<name>label_tap.png</name>
+		<x>324</x>
+		<y>103</y>
+		<width>86</width>
+		<height>14</height>
+	</image>
+	
+	<image>
+		<name>label_time.png</name>
+		<x>324</x>
+		<y>170</y>
+		<width>37</width>
+		<height>13</height>
+	</image>
+	
+	<image>
+		<name>log_large.png</name>
+		<x>324</x>
+		<y>46</y>
+		<width>129</width>
+		<height>18</height>
+	</image>
+	
+	<image>
+		<name>log_medium.png</name>
+		<x>324</x>
+		<y>119</y>
+		<width>84</width>
+		<height>18</height>
+	</image>
+	
+	<image>
+		<name>log_small.png</name>
+		<x>517</x>
+		<y>114</y>
+		<width>60</width>
+		<height>18</height>
+	</image>
+	
+	<image>
+		<name>logo.png</name>
+		<x>646</x>
+		<y>14</y>
+		<width>155</width>
+		<height>44</height>
+	</image>
+	
+	<image>
+		<name>new_level_box.png</name>
+		<x>451</x>
+		<y>85</y>
+		<width>86</width>
+		<height>15</height>
+	</image>
+	
+	<image>
+		<name>number_level_0.png</name>
+		<x>412</x>
+		<y>85</y>
+		<width>10</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_level_1.png</name>
+		<x>410</x>
+		<y>119</y>
+		<width>10</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_level_2.png</name>
+		<x>347</x>
+		<y>185</y>
+		<width>10</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_level_3.png</name>
+		<x>343</x>
+		<y>209</y>
+		<width>10</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_level_4.png</name>
+		<x>324</x>
+		<y>233</y>
+		<width>10</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_level_5.png</name>
+		<x>336</x>
+		<y>233</y>
+		<width>10</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_level_6.png</name>
+		<x>429</x>
+		<y>176</y>
+		<width>10</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_level_7.png</name>
+		<x>460</x>
+		<y>153</y>
+		<width>10</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_level_8.png</name>
+		<x>472</x>
+		<y>153</y>
+		<width>10</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_level_9.png</name>
+		<x>579</x>
+		<y>114</y>
+		<width>10</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_score_0.png</name>
+		<x>506</x>
+		<y>133</y>
+		<width>9</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_score_1.png</name>
+		<x>581</x>
+		<y>91</y>
+		<width>9</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_score_2.png</name>
+		<x>591</x>
+		<y>109</y>
+		<width>9</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_score_3.png</name>
+		<x>592</x>
+		<y>91</y>
+		<width>9</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_score_4.png</name>
+		<x>591</x>
+		<y>127</y>
+		<width>9</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_score_5.png</name>
+		<x>517</x>
+		<y>134</y>
+		<width>9</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_score_6.png</name>
+		<x>506</x>
+		<y>151</y>
+		<width>9</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_score_7.png</name>
+		<x>484</x>
+		<y>157</y>
+		<width>9</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_score_8.png</name>
+		<x>460</x>
+		<y>171</y>
+		<width>9</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_score_9.png</name>
+		<x>441</x>
+		<y>177</y>
+		<width>9</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>number_time_0.png</name>
+		<x>632</x>
+		<y>46</y>
+		<width>6</width>
+		<height>10</height>
+	</image>
+	
+	<image>
+		<name>number_time_1.png</name>
+		<x>412</x>
+		<y>103</y>
+		<width>6</width>
+		<height>10</height>
+	</image>
+	
+	<image>
+		<name>number_time_2.png</name>
+		<x>654</x>
+		<y>60</y>
+		<width>6</width>
+		<height>10</height>
+	</image>
+	
+	<image>
+		<name>number_time_3.png</name>
+		<x>662</x>
+		<y>60</y>
+		<width>6</width>
+		<height>10</height>
+	</image>
+	
+	<image>
+		<name>number_time_4.png</name>
+		<x>670</x>
+		<y>60</y>
+		<width>6</width>
+		<height>10</height>
+	</image>
+	
+	<image>
+		<name>number_time_5.png</name>
+		<x>678</x>
+		<y>60</y>
+		<width>6</width>
+		<height>10</height>
+	</image>
+	
+	<image>
+		<name>number_time_6.png</name>
+		<x>686</x>
+		<y>60</y>
+		<width>6</width>
+		<height>10</height>
+	</image>
+	
+	<image>
+		<name>number_time_7.png</name>
+		<x>694</x>
+		<y>60</y>
+		<width>6</width>
+		<height>10</height>
+	</image>
+	
+	<image>
+		<name>number_time_8.png</name>
+		<x>702</x>
+		<y>60</y>
+		<width>6</width>
+		<height>10</height>
+	</image>
+	
+	<image>
+		<name>number_time_9.png</name>
+		<x>373</x>
+		<y>214</y>
+		<width>6</width>
+		<height>10</height>
+	</image>
+	
+	<image>
+		<name>time_bar.png</name>
+		<x>646</x>
+		<y>2</y>
+		<width>176</width>
+		<height>10</height>
+	</image>
+	
+	<image>
+		<name>time_box.png</name>
+		<x>558</x>
+		<y>73</y>
+		<width>86</width>
+		<height>16</height>
+	</image>
+	
+	<image>
+		<name>turtle_1.png</name>
+		<x>558</x>
+		<y>91</y>
+		<width>21</width>
+		<height>21</height>
+	</image>
+	
+	<image>
+		<name>turtle_2.png</name>
+		<x>387</x>
+		<y>170</y>
+		<width>21</width>
+		<height>21</height>
+	</image>
+	
+	<image>
+		<name>turtle_3.png</name>
+		<x>359</x>
+		<y>191</y>
+		<width>21</width>
+		<height>21</height>
+	</image>
+	
+	
+</images>
