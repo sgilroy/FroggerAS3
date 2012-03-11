@@ -46,7 +46,7 @@ public class FroggerAS3 extends Sprite
 
 	private function context3dCreateHandler(event:starling.events.Event):void
 	{
-		stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+//		stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
 		resizeViewPort();
 	}
 

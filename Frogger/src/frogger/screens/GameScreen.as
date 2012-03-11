@@ -1,23 +1,21 @@
 package frogger.screens
 {
-	
-	import flash.geom.Point;
-	import flash.utils.setTimeout;
-	
-	import frogger.*;
-	import frogger.elements.*;
-	import frogger.sprites.GameSprite;
-	import frogger.sprites.MovingSprite;
-	import frogger.sprites.NumberSprite;
-	
-	import starling.display.Image;
-	import starling.display.Sprite;
-	import starling.events.KeyboardEvent;
-	import starling.events.Touch;
-	import starling.events.TouchEvent;
-	import starling.events.TouchPhase;
-	import starling.textures.Texture;
-	
+
+import flash.geom.Point;
+import flash.utils.Dictionary;
+import flash.utils.setTimeout;
+
+import frogger.*;
+import frogger.elements.*;
+import frogger.sprites.GameSprite;
+import frogger.sprites.NumberSprite;
+
+import starling.display.Image;
+import starling.events.KeyboardEvent;
+import starling.events.Touch;
+import starling.events.TouchEvent;
+import starling.events.TouchPhase;
+
 	public class GameScreen extends Screen
 	{	
 		
@@ -33,8 +31,8 @@ package frogger.screens
 		private var _score:NumberSprite;
 		private var _level:NumberSprite;
 		private var _lives:Lives;
-		
-		
+		private var _ghostFrogs:Dictionary = new Dictionary();
+		private var _ghostFrogsCache:Vector.<GhostFrog> = new Vector.<GhostFrog>();
 		
 		public function GameScreen(game:Game)
 		{
@@ -110,6 +108,13 @@ package frogger.screens
 				for (i = 0; i < _tiers.length; i++) {
 					_tiers[i].reset();
 				}
+				for each (var ghostFrog:GhostFrog in _ghostFrogs)
+				{
+					var ghostFrogId:String = ghostFrog.id;
+					delete _ghostFrogs[ghostFrogId];
+					_ghostFrogsCache.push(ghostFrog);
+					ghostFrog.reset();
+				}
 			}
 			
 			_score.showValue(0);
@@ -117,11 +122,17 @@ package frogger.screens
 			
 			//add main input events
 			_controls.skin.addEventListener(TouchEvent.TOUCH, onControlTouch);
+			_game.stage.addEventListener(TouchEvent.TOUCH, onStageTouch);
 			_game.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 			_game.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
 			
 			_game.gameData.gameMode = Game.GAME_STATE_PLAY;
 			_timer.startTimer();
+		}
+
+		private function onStageTouch(event:TouchEvent):void
+		{
+			controlGhosts(event);
 		}
 
 		override public function update (dt:Number):void{
@@ -150,6 +161,7 @@ package frogger.screens
 					 }
 					 //kill player
 					 _player.kill();
+					 stopGhostFrogControl(_player);
 					 _game.gameData.lives--;
 					 _lives.updateLives();
 				 }
@@ -170,10 +182,19 @@ package frogger.screens
 			 
 			 _timer.update(dt);
 		}
+
+		private function stopGhostFrogControl(player:Player):void
+		{
+			for each (var ghostFrog:GhostFrog in _ghostFrogs)
+			{
+				ghostFrog.stopPlayerControl();
+			}
+		}
 		
 		//kill events
 		override public function destroy ():void {
 			_controls.skin.removeEventListener(TouchEvent.TOUCH, onControlTouch);
+			_game.stage.removeEventListener(TouchEvent.TOUCH, onStageTouch);
 			_game.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 			_game.stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyUp);
 		}
@@ -228,7 +249,7 @@ package frogger.screens
 		//process touches 
 		private function onControlTouch (event:TouchEvent):void {
 			if (_game.gameData.gameMode != Game.GAME_STATE_PLAY || !_player.skin.visible) return;
-			
+
 			var touch:Touch = event.getTouch(_controls.skin);
 			if (touch && touch.phase == TouchPhase.BEGAN) {
 				if (!_player.moveTimer.running) {
@@ -252,6 +273,74 @@ package frogger.screens
 				}
 				
 			}
+		}
+
+		private function controlGhosts(event:TouchEvent):void
+		{
+			for each(var touch:Touch in event.touches)
+			{
+				var ghostFrogId:String = "touch" + touch.id;
+				if (touch.phase == TouchPhase.BEGAN)
+				{
+					createGhostFrog(ghostFrogId, touch.globalX, touch.globalY);
+				}
+				else if (touch.phase == TouchPhase.MOVED || touch.phase == TouchPhase.STATIONARY)
+				{
+					updateGhostFrog(ghostFrogId, touch.globalX, touch.globalY);
+				}
+				else if (touch.phase == TouchPhase.ENDED)
+				{
+					destroyGhostFrog(ghostFrogId);
+				}
+			}
+		}
+
+		private function createGhostFrog(ghostFrogId:String, globalX:Number, globalY:Number):GhostFrog
+		{
+			var ghostFrog:GhostFrog;
+			if (_ghostFrogsCache.length > 0)
+			{
+				ghostFrog = _ghostFrogsCache.pop();
+				ghostFrog.id = ghostFrogId;
+				ghostFrog.x = globalX;
+				ghostFrog.y = globalY;
+				ghostFrog.place();
+				ghostFrog.skin.visible = true;
+			}
+			else
+			{
+				ghostFrog = new GhostFrog(_game, globalX, globalY);
+				ghostFrog.id = ghostFrogId;
+				_dynamicElements.push(ghostFrog);
+			}
+			_ghostFrogs[ghostFrogId] = ghostFrog;
+			ghostFrog.updatePlayerControl(_player);
+			return ghostFrog;
+		}
+
+		private function updateGhostFrog(ghostFrogId:String, globalX:Number, globalY:Number):GhostFrog
+		{
+			var ghostFrog:GhostFrog = _ghostFrogs[ghostFrogId] as GhostFrog;
+			if (ghostFrog)
+			{
+				ghostFrog.x = globalX;
+				ghostFrog.y = globalY;
+				ghostFrog.updatePlayerControl(_player);
+			}
+			return ghostFrog;
+		}
+
+		private function destroyGhostFrog(ghostFrogId:String):GhostFrog
+		{
+			var ghostFrog:GhostFrog = _ghostFrogs[ghostFrogId] as GhostFrog;
+			if (ghostFrog)
+			{
+				// instead of removing from dynamicElements, we recycle ghosts in a cache
+				ghostFrog.reset();
+				delete _ghostFrogs[ghostFrogId];
+				_ghostFrogsCache.push(ghostFrog);
+			}
+			return ghostFrog;
 		}
 		
 		private function onKeyDown (event:KeyboardEvent):void {
