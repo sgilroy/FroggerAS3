@@ -10,13 +10,18 @@ import frogger.elements.*;
 import frogger.sprites.GameSprite;
 import frogger.sprites.NumberSprite;
 
+import org.tuio.ITuioListener;
+import org.tuio.TuioBlob;
+import org.tuio.TuioCursor;
+import org.tuio.TuioObject;
+
 import starling.display.Image;
 import starling.events.KeyboardEvent;
 import starling.events.Touch;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
 
-	public class GameScreen extends Screen
+public class GameScreen extends Screen implements ITuioListener
 	{	
 		
 		private var _bg:GameSprite;
@@ -39,8 +44,7 @@ import starling.events.TouchPhase;
 			super(game);
 			_tiers = new Vector.<Tier>;
 		}
-		
-		
+
 		override public function createScreen():void
 		{
 			if (numChildren == 0) {
@@ -81,7 +85,7 @@ import starling.events.TouchPhase;
 				_lives = new Lives (_game, _game.screenWidth * 0.68, _game.screenHeight * 0.02);
 				
 				//add controls
-				_controls = new Controls (_game, _game.screenWidth * 0.82, _game.screenHeight * 0.85);
+//				_controls = new Controls (_game, _game.screenWidth * 0.82, _game.screenHeight * 0.85);
 				
 				//add game labels (game over, new level, game timer)
 				_gameOverMsg = new GameSprite(_game, _game.screenWidth * 0.5, _game.screenHeight * 0.53);
@@ -121,7 +125,8 @@ import starling.events.TouchPhase;
 			_level.showValue(1);
 			
 			//add main input events
-			_controls.skin.addEventListener(TouchEvent.TOUCH, onControlTouch);
+			if (_controls)
+				_controls.skin.addEventListener(TouchEvent.TOUCH, onControlTouch);
 			_game.stage.addEventListener(TouchEvent.TOUCH, onStageTouch);
 			_game.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 			_game.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
@@ -193,7 +198,8 @@ import starling.events.TouchPhase;
 		
 		//kill events
 		override public function destroy ():void {
-			_controls.skin.removeEventListener(TouchEvent.TOUCH, onControlTouch);
+			if (_controls)
+				_controls.skin.removeEventListener(TouchEvent.TOUCH, onControlTouch);
 			_game.stage.removeEventListener(TouchEvent.TOUCH, onStageTouch);
 			_game.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 			_game.stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyUp);
@@ -392,10 +398,76 @@ import starling.events.TouchPhase;
 		private function onRestartGame (event:TouchEvent):void {
 			var touch:Touch = event.getTouch(this);
 			if (touch && touch.phase == TouchPhase.ENDED) {
-				this.removeEventListener(TouchEvent.TOUCH, onRestartGame);
-				_gameOverMsg.hide();
-				_game.setScreen(MenuScreen);
+				restartGame();
 			}
+		}
+
+	private function restartGame():void
+	{
+		this.removeEventListener(TouchEvent.TOUCH, onRestartGame);
+		_gameOverMsg.hide();
+		_game.setScreen(MenuScreen);
+	}
+
+		public function addTuioObject(tuioObject:TuioObject):void
+		{
+		}
+
+		public function updateTuioObject(tuioObject:TuioObject):void
+		{
+		}
+
+		public function removeTuioObject(tuioObject:TuioObject):void
+		{
+		}
+
+		public function addTuioCursor(tuioCursor:TuioCursor):void
+		{
+			if (_game.gameData.gameMode == Game.GAME_STATE_PAUSE && _player.dead)
+			{
+				restartGame();
+			}
+			else if (stage)
+				createGhostFrog("tuio" + tuioCursor.sessionID, tuioCursor.x * stage.stageWidth, tuioCursor.y * stage.stageHeight);
+		}
+
+		public function updateTuioCursor(tuioCursor:TuioCursor):void
+		{
+			if (stage)
+			{
+				var ghostFrogId:String = "tuio" + tuioCursor.sessionID;
+
+				var ghostFrog:GhostFrog = _ghostFrogs[ghostFrogId] as GhostFrog;
+				if (!ghostFrog)
+				{
+					createGhostFrog(ghostFrogId, tuioCursor.x * stage.stageWidth,
+													tuioCursor.y * stage.stageHeight);
+				}
+
+				updateGhostFrog(ghostFrogId, tuioCursor.x * stage.stageWidth,
+								tuioCursor.y * stage.stageHeight);
+			}
+		}
+
+		public function removeTuioCursor(tuioCursor:TuioCursor):void
+		{
+			destroyGhostFrog("tuio" + tuioCursor.sessionID);
+		}
+
+		public function addTuioBlob(tuioBlob:TuioBlob):void
+		{
+		}
+
+		public function updateTuioBlob(tuioBlob:TuioBlob):void
+		{
+		}
+
+		public function removeTuioBlob(tuioBlob:TuioBlob):void
+		{
+		}
+
+		public function newFrame(id:uint):void
+		{
 		}
 	}
 }

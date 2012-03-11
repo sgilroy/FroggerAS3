@@ -5,8 +5,14 @@ package frogger
 	import flash.utils.getQualifiedClassName;
 	
 	import frogger.screens.Screen;
-	
-	import starling.core.Starling;
+
+import org.tuio.ITuioListener;
+
+import org.tuio.TuioClient;
+import org.tuio.connectors.UDPConnector;
+import org.tuio.osc.IOSCConnector;
+
+import starling.core.Starling;
 	import starling.display.Sprite;
 	import starling.textures.TextureAtlas;
 	
@@ -29,32 +35,43 @@ package frogger
 			super();
 			_screens = new Dictionary();
 			viewPort = Starling.current.viewPort;
+			initializeTuioClient();
 		}
 		
 		public function getScreen ():Screen {
 			return _screen;
 		}
 			
-		public function setScreen (value:Class):void {
-			
+		public function setScreen (value:Class):void
+		{
+
 			var screen:Screen;
-			if (_screens[getQualifiedClassName(value)] == null) {
-				screen = new value (this);
+			if (_screens[getQualifiedClassName(value)] == null)
+			{
+				screen = new value(this);
 				_screens[getQualifiedClassName(value)] = screen;
-			} else {
+			} else
+			{
 				screen = _screens[getQualifiedClassName(value)];
 			}
-			
-			if (_screen) {
+
+			if (_screen)
+			{
 				//clear current screen
+				var tuioListener:ITuioListener = _screen as ITuioListener;
+				if (tuioListener)
+					_tuioClient.removeListener(tuioListener);
 				removeChild(_screen);
 				_screen.destroy();
 			}
-			
+
 			_screen = screen;
 			_screen.createScreen();
 			addChild(_screen);
-			
+
+			tuioListener = _screen as ITuioListener;
+			if (tuioListener)
+				_tuioClient.addListener(tuioListener);
 		}
 		
 		public function get screenWidth ():int {
@@ -66,5 +83,34 @@ package frogger
 		}
 		
 		protected function updateGame (dt:Number):void {}
+
+		public var _connector:IOSCConnector;
+		private var _tuioClient:TuioClient;
+
+		public function initializeTuioClient(host:String = "127.0.0.1", port:int = 3333):void
+		{
+			if (_tuioClient)
+			{
+//				_tuioClient.removeListener(TuioManager.init(_stage));
+//				_tuioClient.removeListener(this);
+				_tuioClient = null;
+			}
+
+			if (_connector)
+			{
+				_connector.close();
+				_connector = null;
+			}
+
+			_connector = new UDPConnector(host, port);
+
+			if (_connector)
+			{
+				_tuioClient = new TuioClient(_connector);
+//				_tuioClient.addListener(TuioManager.init(_stage));
+//				_tuioClient.addListener(this);
+			}
+		}
+
 	}
 }

@@ -1,15 +1,21 @@
 package frogger.screens
 {
-	import frogger.Game;
-	
-	import starling.display.Image;
-	import starling.display.Quad;
-	import starling.display.Sprite;
-	import starling.events.Touch;
-	import starling.events.TouchEvent;
-	import starling.events.TouchPhase;
-	
-	public class MenuScreen extends Screen {
+
+import frogger.Game;
+
+import org.tuio.ITuioListener;
+import org.tuio.TuioBlob;
+import org.tuio.TuioCursor;
+import org.tuio.TuioObject;
+
+import starling.display.Image;
+import starling.display.Quad;
+import starling.events.Touch;
+import starling.events.TouchEvent;
+import starling.events.TouchPhase;
+
+public class MenuScreen extends Screen implements ITuioListener
+	{
 		
 		public function MenuScreen(game:Game) {
 			super(game);
@@ -75,6 +81,47 @@ package frogger.screens
 			if (touch && touch.phase == TouchPhase.ENDED) {
 				_game.setScreen(GameScreen);
 			}
+		}
+
+		public function addTuioObject(tuioObject:TuioObject):void
+		{
+		}
+
+		public function updateTuioObject(tuioObject:TuioObject):void
+		{
+		}
+
+		public function removeTuioObject(tuioObject:TuioObject):void
+		{
+		}
+
+		public function addTuioCursor(tuioCursor:TuioCursor):void
+		{
+			_game.setScreen(GameScreen);
+		}
+
+		public function updateTuioCursor(tuioCursor:TuioCursor):void
+		{
+		}
+
+		public function removeTuioCursor(tuioCursor:TuioCursor):void
+		{
+		}
+
+		public function addTuioBlob(tuioBlob:TuioBlob):void
+		{
+		}
+
+		public function updateTuioBlob(tuioBlob:TuioBlob):void
+		{
+		}
+
+		public function removeTuioBlob(tuioBlob:TuioBlob):void
+		{
+		}
+
+		public function newFrame(id:uint):void
+		{
 		}
 	}
 }

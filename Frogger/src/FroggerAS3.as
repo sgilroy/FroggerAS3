@@ -6,6 +6,9 @@
 package
 {
 
+import flash.desktop.NativeApplication;
+import flash.display.NativeWindow;
+import flash.display.Screen;
 import flash.display.Sprite;
 import flash.display.StageAlign;
 import flash.display.StageDisplayState;
@@ -47,6 +50,7 @@ public class FroggerAS3 extends Sprite
 	private function context3dCreateHandler(event:starling.events.Event):void
 	{
 //		stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+		fillPortraitScreen();
 		resizeViewPort();
 	}
 
@@ -74,5 +78,57 @@ public class FroggerAS3 extends Sprite
 			stage.displayState = (stage.displayState == StageDisplayState.NORMAL) ? StageDisplayState.FULL_SCREEN_INTERACTIVE : StageDisplayState.NORMAL;
 		}
 	}
+	
+	private var _screenIndex:int = 0;
+	private var _displayState:String = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+	private var _window:NativeWindow;
+
+	private function fillPortraitScreen():Boolean
+	{
+		var screenIndex:int = 0;
+
+		for each (var screen:Screen in Screen.screens)
+		{
+			if (screen.bounds.height > screen.bounds.width)
+			{
+				_displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+				_screenIndex = screenIndex;
+				moveWindow();
+				return true;
+			}
+			screenIndex++;
+		}
+		return false;
+	}
+
+	protected function moveWindow():void
+	{
+		var currentScreen:Screen = Screen.screens[_screenIndex];
+		var bounds:Rectangle = currentScreen.bounds;
+
+		_window = NativeApplication.nativeApplication.activeWindow;
+		if (_displayState == StageDisplayState.NORMAL)
+		{
+			_window.stage.displayState = StageDisplayState.NORMAL;
+			_window.width = currentScreen.bounds.width / 2;
+			_window.height = currentScreen.bounds.height / 2;
+			_window.x = currentScreen.bounds.x + currentScreen.bounds.width / 4;
+			_window.y = currentScreen.bounds.y + currentScreen.bounds.height / 4;
+		}
+		else
+		{
+			_window.x = bounds.x;
+			_window.y = bounds.y;
+			//					if (_window is WindowedApplication)
+			//						(_window as WindowedApplication).bounds = bounds;
+
+			// Fix the size. For some reason, the height and width of the Window are not getting updated to match the stage when the window is first created.
+			_window.width = currentScreen.bounds.width;
+			_window.height = currentScreen.bounds.height;
+
+			_window.stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+		}
+	}
+
 }
 }
