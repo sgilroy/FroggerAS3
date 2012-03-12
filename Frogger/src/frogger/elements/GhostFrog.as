@@ -22,7 +22,7 @@ public class GhostFrog extends MovingSprite
 		super(game, x, y);
 		speed = 0;
 		
-		setSkin(new Image(_game.imageCache.getTexture("frog_stand")));
+		setSkin(new Image(_game.imageCache.getTexture("bullseye")));
 		skin.alpha = 0.5;
 		skin.scaleX = 2;
 		skin.scaleY = 2;
@@ -33,8 +33,13 @@ public class GhostFrog extends MovingSprite
 	override public function update (dt:Number):void
 	{
 		_animationTimer += dt;
-		skin.scaleX = Math.sin(_animationTimer * getAnimationPulseSpeed()) * 0.5 + 2;
+		if (_player)
+			skin.scaleX = 0.5;
+		else
+			skin.scaleX = Math.sin(_animationTimer * getAnimationPulseSpeed()) * 0.25 + 1;
 		skin.scaleY = skin.scaleX;
+
+		movePlayer();
 	}
 
 	private function movePlayer():void
@@ -112,7 +117,7 @@ public class GhostFrog extends MovingSprite
 			}
 		}
 
-		movePlayer();
+//		movePlayer();
 	}
 
 	override public function reset ():void {

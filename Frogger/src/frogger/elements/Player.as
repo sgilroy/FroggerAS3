@@ -101,7 +101,7 @@
 			if (!moveTimer.running) {
 				tierIndex++;
 				if (tierIndex >= Tier.TIER_Y.length) tierIndex = Tier.TIER_Y.length - 1;
-				nextY = Tier.TIER_Y[tierIndex] + skin.height*0.5;
+				y = nextY = Tier.TIER_Y[tierIndex] + skin.height*0.5;
 				moveTimer.reset();
 				moveTimer.start();
 				showMoveFrame(MovingSprite.UP);
@@ -115,7 +115,7 @@
 			if (!moveTimer.running) {
 				tierIndex--;
 				if (tierIndex < 0) tierIndex = 0;
-				nextY = Tier.TIER_Y[tierIndex] + skin.height*0.5;
+				y = nextY = Tier.TIER_Y[tierIndex] + skin.height*0.5;
 				moveTimer.reset();
 				moveTimer.start();
 				showMoveFrame(MovingSprite.DOWN);
@@ -127,7 +127,7 @@
 		
 		public function moveFrogLeft ():void {
 			if (!moveTimer.running) {
-				nextX -= _sideStep;
+				x = nextX -= _sideStep;
 				moveTimer.reset();
 				moveTimer.start();
 				showMoveFrame(MovingSprite.LEFT);
@@ -138,7 +138,7 @@
 		
 		public function moveFrogRight ():void {
 			if (!moveTimer.running) {
-				nextX += _sideStep;
+				x = nextX += _sideStep;
 				moveTimer.reset();
 				moveTimer.start();
 				showMoveFrame(MovingSprite.RIGHT);

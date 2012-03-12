@@ -75,4 +75,5 @@
     <SubTexture name="turtle_1" x="2" y="724" width="21" height="21"/>
     <SubTexture name="turtle_2" x="25" y="724" width="21" height="21"/>
     <SubTexture name="turtle_3" x="48" y="724" width="21" height="21"/>
+	<SubTexture name="bullseye" x="2" y="748" width="128" height="128"/>
 </TextureAtlas>
