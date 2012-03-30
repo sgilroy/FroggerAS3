@@ -155,12 +155,14 @@
 			<!-- <contentType></contentType> -->
 			
 			<!-- The icon to display for the file type. Optional. -->
-			<!-- <icon>
+			 <icon>
+<!--
 				<image16x16></image16x16>
 				<image32x32></image32x32>
 				<image48x48></image48x48>
-				<image128x128></image128x128>
-			</icon> -->
+-->
+				<image128x128>assets/frogger_icon_128.png</image128x128>
+			</icon>
 			
 		<!-- </fileType> -->
 	<!-- </fileTypes> -->

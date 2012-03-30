@@ -1,11 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="Flex" version="4">
-  <component name="Flex.Build.Configuration">
-    <option name="DO_BUILD" value="true" />
-    <option name="MAIN_CLASS" value="FroggerAS3" />
-    <option name="OUTPUT_FILE_NAME" value="FroggerAS3.swf" />
-    <option name="TARGET_PLAYER_VERSION" value="11.1" />
-    <option name="VERSION" value="3" />
+  <component name="FlexBuildConfigurationManager" active="FroggerAS3">
+    <configurations>
+      <configuration name="FroggerAS3" target-platform="Desktop" main-class="FroggerAS3" output-file="FroggerAS3.swf" output-folder="$MODULE_DIR$/../out/production/FroggerAS3">
+        <dependencies>
+          <entries>
+            <entry library-id="48b42fc5-85f3-4d29-a02c-d9d2a40bd65a">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="e321039a-fb08-44fb-a084-8f118c94fb17">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="e36bea4f-0d39-4f39-bb33-0a7b1789794a">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="4.6.0" />
+        </dependencies>
+        <compiler-options />
+        <packaging-air-desktop use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/FroggerAS3-air-app.xml" package-file-name="FroggerAS3">
+          <AirSigningOptions keystore-path="$MODULE_DIR$/FroggerKeystore.p12" use-temp-certificate="false" />
+        </packaging-air-desktop>
+        <packaging-android />
+        <packaging-ios />
+      </configuration>
+      <configuration name="FroggerAS3Mobile" target-platform="Mobile" main-class="FroggerAS3" output-file="FroggerAS3Mobile.swf" output-folder="$MODULE_DIR$/../out/production/FroggerAS3">
+        <dependencies>
+          <entries>
+            <entry library-id="2fbaf123-79f4-43c8-b75e-ba30a674247c">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="1f115433-464f-4211-a30a-bbb37720cdaf">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="4.6.0" />
+        </dependencies>
+        <compiler-options />
+        <packaging-air-desktop />
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/FroggerAS3-air-app.xml" package-file-name="FroggerAS3Mobile">
+          <files-to-package>
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/assets/frogger_icon_128.png" path-in-package="assets/frogger_icon_128.png" />
+          </files-to-package>
+          <AirSigningOptions keystore-path="$MODULE_DIR$/FroggerKeystore.p12" use-temp-certificate="false" />
+        </packaging-android>
+        <packaging-ios package-file-name="FroggerAS3Mobile" />
+      </configuration>
+    </configurations>
+    <compiler-options />
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -13,10 +55,10 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/bin" />
     </content>
-    <orderEntry type="jdk" jdkName="4.6.0 AIR" jdkType="AIR SDK Type" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library name="libs" type="flex">
+        <properties id="48b42fc5-85f3-4d29-a02c-d9d2a40bd65a" />
         <CLASSES>
           <root url="file://$MODULE_DIR$/libs" />
           <root url="file://$MODULE_DIR$/libs" />
@@ -29,7 +71,8 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library>
+      <library type="flex">
+        <properties id="e321039a-fb08-44fb-a084-8f118c94fb17" />
         <CLASSES>
           <root url="jar://$PROJECT_FRAMEWORKS$/libs/player/11.1/playerglobal.swc!/" />
         </CLASSES>
@@ -39,6 +82,29 @@
     </orderEntry>
     <orderEntry type="module-library">
       <library name="playerglobal" type="flex">
+        <properties id="e36bea4f-0d39-4f39-bb33-0a7b1789794a" />
+        <CLASSES>
+          <root url="jar://$PROJECT_FRAMEWORKS$/libs/player/11.1/playerglobal.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="jdk" jdkName="4.6.0" jdkType="__CompositeFlexSdk__" />
+    <orderEntry type="module-library">
+      <library type="flex">
+        <properties id="2fbaf123-79f4-43c8-b75e-ba30a674247c" />
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/libs" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library type="flex">
+        <properties id="1f115433-464f-4211-a30a-bbb37720cdaf" />
         <CLASSES>
           <root url="jar://$PROJECT_FRAMEWORKS$/libs/player/11.1/playerglobal.swc!/" />
         </CLASSES>

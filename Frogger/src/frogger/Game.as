@@ -59,7 +59,7 @@ import starling.core.Starling;
 			{
 				//clear current screen
 				var tuioListener:ITuioListener = _screen as ITuioListener;
-				if (tuioListener)
+				if (tuioListener && _tuioClient)
 					_tuioClient.removeListener(tuioListener);
 				removeChild(_screen);
 				_screen.destroy();
@@ -70,16 +70,16 @@ import starling.core.Starling;
 			addChild(_screen);
 
 			tuioListener = _screen as ITuioListener;
-			if (tuioListener)
+			if (tuioListener && _tuioClient)
 				_tuioClient.addListener(tuioListener);
 		}
 		
 		public function get screenWidth ():int {
-			return viewPort.width;	
+			return FroggerAS3.UNSCALED_WIDTH;
 		}
 		
 		public function get screenHeight ():int {
-			return viewPort.height;	
+			return FroggerAS3.UNSCALED_HEIGHT;
 		}
 		
 		protected function updateGame (dt:Number):void {}
@@ -102,7 +102,14 @@ import starling.core.Starling;
 				_connector = null;
 			}
 
-			_connector = new UDPConnector(host, port);
+			try
+			{
+				_connector = new UDPConnector(host, port);
+			} catch (e:Error)
+			{
+				// TODO: log or otherwise show error
+				trace(e.toString());
+			}
 
 			if (_connector)
 			{
@@ -112,5 +119,9 @@ import starling.core.Starling;
 			}
 		}
 
+		public function get useControls():Boolean
+		{
+			return _connector == null;
+		}
 	}
 }

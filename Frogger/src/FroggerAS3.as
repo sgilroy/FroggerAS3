@@ -26,6 +26,8 @@ import starling.events.KeyboardEvent;
 [SWF(width="320", height="480", backgroundColor="#000000", frameRate="60")]
 public class FroggerAS3 extends Sprite
 {
+	public static const UNSCALED_WIDTH:int = 320;
+	public static const UNSCALED_HEIGHT:int = 480;
 
 	private var _starling:Starling;
 
@@ -40,7 +42,7 @@ public class FroggerAS3 extends Sprite
 	private function onInit(event:flash.events.Event):void
 	{
 		//set up starling
-		_starling = new Starling(FrogGame, stage);
+		_starling = new Starling(FrogGame, stage, new Rectangle(0, 0, UNSCALED_WIDTH, UNSCALED_HEIGHT));
 		_starling.antiAliasing = 1;
 		_starling.start();
 		_starling.addEventListener(starling.events.Event.CONTEXT3D_CREATE, context3dCreateHandler);
@@ -49,7 +51,6 @@ public class FroggerAS3 extends Sprite
 
 	private function context3dCreateHandler(event:starling.events.Event):void
 	{
-//		stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
 		fillPortraitScreen();
 		resizeViewPort();
 	}
@@ -107,26 +108,29 @@ public class FroggerAS3 extends Sprite
 		var bounds:Rectangle = currentScreen.bounds;
 
 		_window = NativeApplication.nativeApplication.activeWindow;
-		if (_displayState == StageDisplayState.NORMAL)
+		if (_window)
 		{
-			_window.stage.displayState = StageDisplayState.NORMAL;
-			_window.width = currentScreen.bounds.width / 2;
-			_window.height = currentScreen.bounds.height / 2;
-			_window.x = currentScreen.bounds.x + currentScreen.bounds.width / 4;
-			_window.y = currentScreen.bounds.y + currentScreen.bounds.height / 4;
-		}
-		else
-		{
-			_window.x = bounds.x;
-			_window.y = bounds.y;
-			//					if (_window is WindowedApplication)
-			//						(_window as WindowedApplication).bounds = bounds;
+			if (_displayState == StageDisplayState.NORMAL)
+			{
+				_window.stage.displayState = StageDisplayState.NORMAL;
+				_window.width = currentScreen.bounds.width / 2;
+				_window.height = currentScreen.bounds.height / 2;
+				_window.x = currentScreen.bounds.x + currentScreen.bounds.width / 4;
+				_window.y = currentScreen.bounds.y + currentScreen.bounds.height / 4;
+			}
+			else
+			{
+				_window.x = bounds.x;
+				_window.y = bounds.y;
+				//					if (_window is WindowedApplication)
+				//						(_window as WindowedApplication).bounds = bounds;
 
-			// Fix the size. For some reason, the height and width of the Window are not getting updated to match the stage when the window is first created.
-			_window.width = currentScreen.bounds.width;
-			_window.height = currentScreen.bounds.height;
+				// Fix the size. For some reason, the height and width of the Window are not getting updated to match the stage when the window is first created.
+				_window.width = currentScreen.bounds.width;
+				_window.height = currentScreen.bounds.height;
 
-			_window.stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+				_window.stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+			}
 		}
 	}
 

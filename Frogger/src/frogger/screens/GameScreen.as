@@ -85,7 +85,8 @@ public class GameScreen extends Screen implements ITuioListener
 				_lives = new Lives (_game, _game.screenWidth * 0.68, _game.screenHeight * 0.02);
 				
 				//add controls
-//				_controls = new Controls (_game, _game.screenWidth * 0.82, _game.screenHeight * 0.85);
+				if (_game.useControls)
+					_controls = new Controls (_game, _game.screenWidth * 0.82, _game.screenHeight * 0.85);
 				
 				//add game labels (game over, new level, game timer)
 				_gameOverMsg = new GameSprite(_game, _game.screenWidth * 0.5, _game.screenHeight * 0.53);
@@ -221,7 +222,8 @@ public class GameScreen extends Screen implements ITuioListener
 		
 		//when player has reached one of the 5 targets
 		public function targetReached ():void {
-			
+			stopGhostFrogControl(_player);
+
 			//show time for this target
 			_levelTimeMsg.timeLabel.showValue(_timer.getLevelTime());
 			_levelTimeMsg.show();
@@ -254,6 +256,7 @@ public class GameScreen extends Screen implements ITuioListener
 		
 		//process touches 
 		private function onControlTouch (event:TouchEvent):void {
+			event.stopImmediatePropagation();
 			if (_game.gameData.gameMode != Game.GAME_STATE_PLAY || !_player.skin.visible) return;
 
 			var touch:Touch = event.getTouch(_controls.skin);
