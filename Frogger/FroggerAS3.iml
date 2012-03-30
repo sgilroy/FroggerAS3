@@ -19,6 +19,9 @@
         </dependencies>
         <compiler-options />
         <packaging-air-desktop use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/FroggerAS3-air-app.xml" package-file-name="FroggerAS3">
+          <files-to-package>
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/assets/frogger_icon_128.png" path-in-package="assets/frogger_icon_128.png" />
+          </files-to-package>
           <AirSigningOptions keystore-path="$MODULE_DIR$/FroggerKeystore.p12" use-temp-certificate="false" />
         </packaging-air-desktop>
         <packaging-android />
@@ -38,7 +41,7 @@
         </dependencies>
         <compiler-options />
         <packaging-air-desktop />
-        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/FroggerAS3-air-app.xml" package-file-name="FroggerAS3Mobile">
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/FroggerAS3-air-mobile-app.xml" package-file-name="FroggerAS3Mobile">
           <files-to-package>
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/assets/frogger_icon_128.png" path-in-package="assets/frogger_icon_128.png" />
           </files-to-package>
